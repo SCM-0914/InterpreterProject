@@ -1,7 +1,7 @@
 import java.util.Scanner;
 public class RandomTester{
     public static void main(String[] args){
-        Node.StatementNode s = new Node.StatementNode("ell0");
+        Node.StatementNode s = new Node.StatementNode("huh");
         println(s.getName());
     }
 
