@@ -9,7 +9,7 @@ public class Token{
     public static final String RETURN = "RETURN";   // hopefully i dont need these
     */
 
-    public static final String ILLEGAL = "ILLEGAL";
+    public static final String ILLEGAL = "ILLEGAL";// 
     public static final String EOF= "EOF";
     // Identifiers + literals
     public static final String IDENT = "IDENT";// add, foobar, x, y, ...
@@ -54,10 +54,16 @@ public class Token{
         this.type = typ;
         this.value = val;
     }
+    
+    public Token clone(){return new Token(type,value);}
 
     public String getType(){return type;}
     
     public String getValue(){return value;}
+    
+    public void setType(String typ){this.type = typ;}
+    
+    public void setValue(String val){this.value = val;}
 
     public String toString(){
         return ("Token: "+type+" , "+value);

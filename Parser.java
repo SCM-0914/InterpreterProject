@@ -1,26 +1,36 @@
 public class Parser{
-    public Parser(){
-        
+    Lexer lex;
+    private Token curTok;
+    private Token peakTok;
+
+    public Parser(Lexer l){
+        lex = l;
+        peakTok = lex.nextToken();
+        nextToken();
     }
 
-    public static Node parseLine(String in){
-        Lexer lex = new Lexer(in);
-        if(lex.nextToken().getType().equals(Token.LET)){
-            return parseLetStatement(lex);
+    public void nextToken(){
+        curTok = peakTok.clone();
+        peakTok = lex.nextToken();
+    }
+
+    public AST.Statement parseProgram(){
+        if(curTok.getType().equals(Token.LET)){
+            return new AST.Statement(parseLetStatement());
+        }
+        return null;
+    }
+
+    public AST.LetStatement parseLetStatement(){
+        if(peakTok.getType().equals(Token.IDENT)){
+            nextToken();
+            AST.Identifier ident = new AST.Identifier(curTok);
+            nextToken();
+            if(!curTok.getType().equals(Token.ASSIGN)){return null;}
+            nextToken();
+            AST.Expression expr = new AST.Expression(curTok);
+            return new AST.LetStatement(ident,expr);
         }
         else{return null;}
-    }
-    
-    private static Node.LetStatement parseLetStatement(Lexer lex){
-        if(!lex.peakToken().getType().equals(Token.IDENT)){
-            return null;
-        }
-        Node.StatementNode var = new Node.StatementNode(lex.nextToken().getValue());
-        if(!lex.nextToken().getType().equals(Token.ASSIGN)){
-            return null;
-        }
-        
-        Node.ExpressionNode expr = new Node.ExpressionNode(lex.nextToken().getValue());
-        return new Node.LetStatement(var,expr);
     }
 }

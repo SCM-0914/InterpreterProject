@@ -1,11 +1,11 @@
 import java.util.Scanner;
-public class REPL2{
+public class REPL2{//This Time Its Correct
     public static void main(String[] args){
         //String input = "let x = 5";
         String input = getNext(">>>");
-        Node ls = Parser.parseLine(input);
-        
-        println(ls);
+        Lexer lex = new Lexer(input);
+        Parser par = new Parser(lex);
+        println(par.parseProgram());
     }
     
     private static String getNext(String msg){
