@@ -18,7 +18,9 @@ public class Parser{
         if(curTok.getType().equals(Token.LET)){
             return new AST.Statement(parseLetStatement());
         }
-        return null;
+        RuntimeException e = new RuntimeException("Invalid Statement");
+        throw e;
+        //return null;
     }
 
     public AST.LetStatement parseLetStatement(){
@@ -26,11 +28,19 @@ public class Parser{
             nextToken();
             AST.Identifier ident = new AST.Identifier(curTok);
             nextToken();
-            if(!curTok.getType().equals(Token.ASSIGN)){return null;}
+            if(!curTok.getType().equals(Token.ASSIGN)){
+                RuntimeException e = new RuntimeException("Not A Statement");
+                throw e;
+                //return null;
+            }
             nextToken();
             AST.Expression expr = new AST.Expression(curTok);
             return new AST.LetStatement(ident,expr);
         }
-        else{return null;}
+        else{
+            RuntimeException e = new RuntimeException("No Identifier");
+            throw e;
+            //return null;
+        }
     }
 }

@@ -37,9 +37,9 @@ public class Token{
     public static final String LBRACE = "{";
     public static final String RBRACE = "}";
     // Keywords
-    public static final String FUNCTION = "func";
-    public static final String LET = "let";
-    public static final String TRUE = "true";
+    public static final String FUNCTION = "func";   // originally supposed to be 
+    public static final String LET = "let";         // fully capitalized but this
+    public static final String TRUE = "true";       // let me shorten the lexer;
     public static final String FALSE = "false";
     public static final String IF = "if";
     public static final String ELSE = "else";
