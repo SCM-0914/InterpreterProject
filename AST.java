@@ -1,7 +1,6 @@
 import java.util.ArrayList;
 class AST{//abstract because it serves little use instantialized
     
-
     public static interface Node{
         //lets me treat all of the nodes as nodes very easily
     }
