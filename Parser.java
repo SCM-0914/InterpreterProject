@@ -14,13 +14,17 @@ public class Parser{
         peakTok = lex.nextToken();
     }
 
-    public AST.Statement parseProgram(){
+    public AST.Program parseProgram(){
+        AST.Program prgm = new AST.Program();
+        //write boolean methods for expected tokens, then add while loop here;
         if(curTok.getType().equals(Token.LET)){
-            return new AST.Statement(parseLetStatement());
+            prgm.append(new AST.Statement(parseLetStatement()));
         }
-        RuntimeException e = new RuntimeException("Invalid Statement");
-        throw e;
-        //return null;
+        else{
+            RuntimeException e = new RuntimeException("Invalid Statement");
+            throw e;
+        }
+        return prgm;
     }
 
     public AST.LetStatement parseLetStatement(){

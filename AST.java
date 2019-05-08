@@ -1,15 +1,21 @@
+import java.util.ArrayList;
 class AST{//abstract because it serves little use instantialized
-    private Statement[] statements;
-    public Statement[] getStatements(){
-        return this.statements;
-    }
-
-    public void setStatements(Statement[] statements){
-        this.statements = statements;
-    }
+    
 
     public static interface Node{
         //lets me treat all of the nodes as nodes very easily
+    }
+    
+    public static class Program implements AST.Node{
+        ArrayList<AST.Statement> statements = new ArrayList<AST.Statement>();
+        
+        public void append(AST.Statement s){
+            statements.add(s);
+        }
+        
+        public ArrayList<AST.Statement> getStatements(){
+            return statements;
+        }
     }
 
     public static class Statement implements AST.Node{

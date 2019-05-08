@@ -5,7 +5,7 @@ public class REPL2{//This Time Its Correct
         String input = getNext(">>>");
         Lexer lex = new Lexer(input);
         Parser par = new Parser(lex);
-        println(par.parseProgram());
+        println(par.parseProgram().getStatements());
     }
     
     private static String getNext(String msg){
